@@ -1,0 +1,7 @@
+joblib
+streamlit
+pandas
+plotly
+datetime
+scikit-learn
+prophet
