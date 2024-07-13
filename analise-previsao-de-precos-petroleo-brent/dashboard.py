@@ -5,6 +5,9 @@ import plotly.express as px
 from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
+import os
+
+current_dir = os.path.dirname(__file__)
 
 # URL do site
 url = "http://www.ipeadata.gov.br/ExibeSerie.aspx?module=m&serid=1650971490&oper=view"
@@ -62,8 +65,15 @@ st.sidebar.write('http://www.ipeadata.gov.br/ExibeSerie.aspx?module=m&serid=1650
 if page != st.session_state.page:
     navigate_to(page)
 
-# Importando modelo
-model_prophet = joblib.load('Projetos/analise-previsao-de-precos-petroleo-brent/modelo_prophet.joblib')
+model_path = os.path.join(current_dir, 'meu_modelo.joblib')
+
+# Carregar o modelo
+try:
+    model_prophet = joblib.load(model_path)
+    st.write("Modelo carregado com sucesso!")
+except FileNotFoundError as e:
+    st.write(f"Erro ao carregar o modelo: {e}")
+
     
 def format_date(date_str):
     # Converter a string de data para um objeto datetime
