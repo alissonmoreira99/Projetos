@@ -4,16 +4,44 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime
 import requests
-from io import StringIO
+from bs4 import BeautifulSoup
 
-url = 'https://github.com/alissonmoreira99/Projetos/blob/main/analise-previsao-de-precos-petroleo-brent/precos.csv'
+# URL do site
+url = "http://www.ipeadata.gov.br/ExibeSerie.aspx?module=m&serid=1650971490&oper=view"
 
+# Realiza a requisição HTTP para obter o conteúdo da página
 response = requests.get(url)
-csv_data = StringIO(response.text)
-df = pd.read_csv(csv_data) 
+response.raise_for_status()  # Verifica se a requisição foi bem sucedida
+
+# Faz o parse do conteúdo HTML usando BeautifulSoup
+soup = BeautifulSoup(response.content, 'html.parser')
+
+# Encontra a tabela na página
+table = soup.find('table', {'id': 'grd_DXMainTable'})
+
+# Inicializa listas para armazenar as colunas de dados
+data_list = []
+preco_list = []
+
+# Itera sobre as linhas da tabela (exceto o cabeçalho)
+for row in table.find_all('tr')[1:]:
+    columns = row.find_all('td')
+    if len(columns) > 1:
+        data_list.append(columns[0].text.strip())
+        preco_list.append(columns[1].text.strip())
+
+ #Cria um DataFrame com os dados extraídos
+df = pd.DataFrame({
+    'Data': data_list,
+    'Preço': preco_list
+})
+
+df.drop(index=[0,1], inplace=True)
+
 
 # Converter a coluna 'Data' para datetime, se necessário
 df['Data'] = pd.to_datetime(df['Data'])
+df['Preço'] = df['Preço'].str.replace(',', '.').astype(float)
 
 if 'page' not in st.session_state:
     st.session_state.page = 'Introdução'
