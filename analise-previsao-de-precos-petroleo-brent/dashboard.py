@@ -9,6 +9,13 @@ import os
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
+
+# Adicionar compatibilidade para np.float_
+try:
+    np.float_ = np.float64
+except AttributeError:
+    warnings.warn("np.float_ is not defined in this version of NumPy. Using np.float64 instead.", UserWarning)
+
 # URL do site
 url = "http://www.ipeadata.gov.br/ExibeSerie.aspx?module=m&serid=1650971490&oper=view"
 
