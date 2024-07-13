@@ -40,7 +40,7 @@ df.drop(index=[0,1], inplace=True)
 
 
 # Converter a coluna 'Data' para datetime, se necessário
-df['Data'] = pd.to_datetime(df['Data'])
+df['Data'] = pd.to_datetime(df['Data'], format="%d/%m/%Y")
 df['Preço'] = df['Preço'].str.replace(',', '.').astype(float)
 
 if 'page' not in st.session_state:
