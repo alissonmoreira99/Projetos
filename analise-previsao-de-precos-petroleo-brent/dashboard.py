@@ -3,9 +3,13 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from datetime import datetime
+import os
 
+current_dir = os.path.dirname(__file__)
 
-df = pd.read_csv('analise-previsao-de-precos-petroleo-brent\precos.csv') 
+file_path = os.path.join(current_dir, 'analise-previsao-de-precos-petroleo-brent','precos.csv')
+
+df = pd.read_csv(file_path) 
 
 # Converter a coluna 'Data' para datetime, se necessário
 df['Data'] = pd.to_datetime(df['Data'])
