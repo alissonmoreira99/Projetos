@@ -4,8 +4,8 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime
 
-# Supondo que você já tenha um DataFrame chamado df com as colunas "Data" e "Preço"
-df = pd.read_csv('precos.csv')  # Carregar seu DataFrame aqui, se necessário
+
+df = pd.read_csv('analise-previsao-de-precos-petroleo-brent\precos.csv') 
 
 # Converter a coluna 'Data' para datetime, se necessário
 df['Data'] = pd.to_datetime(df['Data'])
@@ -319,7 +319,7 @@ def show_predictive_model():
               "externos incomuns, como é o caso de 2008 e 2020 (olhar no gráfico)")
     
 
-    image_path = 'grafico.png'  # Substitua pelo caminho da sua imagem
+    image_path = 'grafico.png'  
 
     # Exibir a imagem
     st.image(image_path, caption='Imagem Interna', use_column_width=True)
