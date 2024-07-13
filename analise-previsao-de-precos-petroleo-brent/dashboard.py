@@ -78,7 +78,6 @@ model_path = os.path.join(current_dir, 'modelo_prophet.joblib')
 # Carregar o modelo
 try:
     model_prophet = joblib.load(model_path)
-    st.write("Modelo carregado com sucesso!")
 except FileNotFoundError as e:
     st.write(f"Erro ao carregar o modelo: {e}")
 
@@ -369,8 +368,7 @@ def show_predictive_model():
              "observa-se que o modelo é mais sensível a quedas ou altas bruscas resultantes de fatores"+
               "externos incomuns, como é o caso de 2008 e 2020 (olhar no gráfico)")
     
-
-    image_path = 'grafico.png'  
+    image_path = os.path.join(current_dir, 'grafico.png')
 
     # Exibir a imagem
     st.image(image_path, caption='Imagem Interna', use_column_width=True)
