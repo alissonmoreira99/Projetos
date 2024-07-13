@@ -63,7 +63,7 @@ if page != st.session_state.page:
     navigate_to(page)
 
 # Importando modelo
-model_prophet = joblib.load('modelo_prophet.joblib')
+model_prophet = joblib.load('analise-previsao-de-precos-petroleo-brent/modelo_prophet.joblib')
     
 def format_date(date_str):
     # Converter a string de data para um objeto datetime
