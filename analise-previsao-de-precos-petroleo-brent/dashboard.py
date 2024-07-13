@@ -6,11 +6,11 @@ from datetime import datetime
 import requests
 from io import StringIO
 
-current_dir = os.path.dirname(__file__)
+url = 'https://github.com/alissonmoreira99/Projetos/blob/main/analise-previsao-de-precos-petroleo-brent/precos.csv'
 
-file_path = os.path.join(current_dir, 'analise-previsao-de-precos-petroleo-brent','precos.csv')
-
-df = pd.read_csv(file_path) 
+response = requests.get(url)
+csv_data = StringIO(response.text)
+df = pd.read_csv(csv_data) 
 
 # Converter a coluna 'Data' para datetime, se necessário
 df['Data'] = pd.to_datetime(df['Data'])
