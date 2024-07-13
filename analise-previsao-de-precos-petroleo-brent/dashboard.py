@@ -7,7 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 import os
 
-current_dir = os.path.dirname(__file__)
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
 # URL do site
 url = "http://www.ipeadata.gov.br/ExibeSerie.aspx?module=m&serid=1650971490&oper=view"
@@ -65,7 +65,7 @@ st.sidebar.write('http://www.ipeadata.gov.br/ExibeSerie.aspx?module=m&serid=1650
 if page != st.session_state.page:
     navigate_to(page)
 
-model_path = os.path.join(current_dir, 'meu_modelo.joblib')
+model_path = os.path.join(current_dir, 'modelo_prophet.joblib')
 
 # Carregar o modelo
 try:
