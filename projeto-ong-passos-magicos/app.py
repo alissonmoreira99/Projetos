@@ -258,8 +258,12 @@ def show_indicadores():
     st.markdown("<h5> Como o comportamento do aluno afeta o IPV? </h5>", unsafe_allow_html=True)
 
 
+    image_path = os.path.join(current_dir, 'correlacao.png')
+
+    # Exibir a imagem
+    st.image(image_path, caption='Imagem Interna', use_column_width=True)
+    
     ##### TRATAMENTO DE VARIAVEIS
-    st.image('correlacao.png')
     st.write("Observando os indicadores que cruzam com a linha do IPV, alguns apresentam alta correlação, "+
              "ou seja, à medida que uma variável muda, a outra tende a mudar de maneira previsível.")
     st.write("Os indicadores IPP, IEG e IDA apresentam forte correlação com IPV.")
@@ -352,7 +356,8 @@ def show_previsao():
 
 def show_conclusao():
     st.subheader('Análise de impacto dos indicadores nos valores do IPV')
-    st.image('summary_plot.png')
+    image_path = os.path.join(current_dir, 'summary_plot.png')
+    st.image(image_path, caption='Imagem Interna', use_column_width=True)
     st.write("O gráfico é uma visualização que resume a importância e o efeito de todas as "+
                 "variáveis preditoras em todas as previsões do conjunto de dados.")
     st.write('Cada indicador contribui um pouco para a resposta final.'+
