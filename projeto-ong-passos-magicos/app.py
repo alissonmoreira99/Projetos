@@ -9,10 +9,9 @@ import shap
 
 
 ## CARREGAR O DATAFRAME
-file_path = './PEDE_PASSOS_DATASET_FIAP.csv'
+url = 'https://raw.githubusercontent.com/alissonmoreira99/Projetos/main/projeto-ong-passos-magicos/PEDE_PASSOS_DATASET_FIAP.csv'
 pd.set_option('display.max_columns', None)
-df_pm = pd.read_csv(file_path, delimiter=';')
-
+df_pm = pd.read_csv(url, delimiter=';')
 
 if 'page' not in st.session_state:
     st.session_state.page = 'Introdução'
