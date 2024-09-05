@@ -333,7 +333,7 @@ def show_previsao():
     if st.button("Prever"):
         y_pred = model_regressor.predict(X_teste)
         #st.write(f"IPV: {round(y_pred[0],2)}")
-        st.markdown(f"<h5>IPV: {y_pred[0]}</h5>", unsafe_allow_html=True)
+        st.markdown(f"<h5>IPV: {round(y_pred[0],2)}</h5>", unsafe_allow_html=True)
         st.markdown("<small>*Pode apresentar um erro médio de 0.87 para mais ou para menos</small>", unsafe_allow_html=True)
         st.markdown("<small> Caso os indicadores tenham valor 0, a previsão será a média do IPV, que fica em torno de 6.0</small>", unsafe_allow_html=True)
         
