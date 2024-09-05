@@ -5,8 +5,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import joblib
 from util import arredondar_numericos, cleaning_dataset, faixa_etaria, filter_columns, transform_column, treat_columns
+import os
 import shap
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
 ## CARREGAR O DATAFRAME
 url = 'https://raw.githubusercontent.com/alissonmoreira99/Projetos/main/projeto-ong-passos-magicos/PEDE_PASSOS_DATASET_FIAP.csv'
@@ -31,8 +33,13 @@ st.sidebar.write('https://passosmagicos.org.br/')
 if page != st.session_state.page:
     navigate_to(page)
 
+
 # Importando modelo
-model_regressor = joblib.load('model_passos_magicos.pkl')
+model_path = os.path.join(current_dir, 'model_passos_magicos.pkl')
+try:
+    model_regressor = joblib.load(model_path)
+except FileNotFoundError as e:
+    st.write(f"Erro ao carregar o modelo: {e}")
 
 # Funções para cada página
 def show_intro():
